@@ -1,0 +1,32 @@
+name: Main Workflow
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  id-token: write
+  pages: write
+
+jobs:
+  run_linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.0
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.4
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: true
+
+      - name: Run Tests
+        run: run test
