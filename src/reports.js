@@ -3,6 +3,7 @@ import $ from 'jquery';
 import { Chart, PieController, ArcElement, Tooltip, Legend } from 'chart.js';
 Chart.register(PieController, ArcElement, Tooltip, Legend);
 
+const unusedVar = "Value";
 export class Reports {
   constructor() {
     this.chart = null;
