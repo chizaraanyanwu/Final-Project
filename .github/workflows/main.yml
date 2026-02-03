@@ -27,3 +27,6 @@ jobs:
         with:
           eslint: true
           prettier: true
+
+      - name: Run Tests
+        run: run test
