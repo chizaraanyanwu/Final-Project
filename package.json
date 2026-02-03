@@ -7,13 +7,16 @@
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "serve": "serve dist",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "prettier": "^3.2.5",
     "@eslint/js": "^9.11.1",
     "@rollup/plugin-commonjs": "^28.0.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
@@ -32,5 +35,11 @@
   "dependencies": {
     "chart.js": "^4.4.4",
     "jquery": "^3.7.1"
+  }, 
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5"
   }
 }
