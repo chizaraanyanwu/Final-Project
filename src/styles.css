@@ -33,7 +33,7 @@ h1 {
 }
 
 #expenses-table th, #expenses-table td {
-    border: 1px solid #ddd;
+    border: 1px solid whitesmoke;
     padding: 8px;
 }
 
