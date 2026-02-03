@@ -3,7 +3,7 @@ const STORAGE_KEY = 'expenses';
 /**
  * retrieves the list of expenses from local storage.
  */
-export function getExpenses {
+export function getExpenses() {
   const expenses = localStorage.getItem(STORAGE_KEY);
   return expenses ? JSON.parse(expenses) : [];
 }
