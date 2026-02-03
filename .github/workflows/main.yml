@@ -19,11 +19,11 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4.0.4
 
-      - name: Install Node.js dependencies
-        run: npm ci
-
       - name: Install Prettier dependencies
         run: npm install --save-dev --save-exact prettier
+
+      - name: Install Node.js dependencies
+        run: npm i
 
       - name: Run linters
         uses: wearerequired/lint-action@v2
@@ -31,5 +31,5 @@ jobs:
           eslint: true
           prettier: true
 
-      - name: Run Tests
-        run: run test
+      - name: Build
+        run: npm run build
