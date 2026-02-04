@@ -31,5 +31,8 @@ jobs:
           eslint: true
           prettier: true
 
+      - name: Code Coverage Reporting
+        uses: brobles82/lcov-reporter-action@node20.9.3
+
       - name: Build
         run: npm run build
