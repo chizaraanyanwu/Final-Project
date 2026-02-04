@@ -6,7 +6,7 @@ Chart.register(PieController, ArcElement, Tooltip, Legend);
 export class Reports {
   constructor() {
     this.chart = null;
-    this.init();
+    this.init() //
   }
 
   init() {
@@ -38,7 +38,7 @@ export class Reports {
         }]
       },
       options: {}
-    });
+    }) //
 
     this.updateChart();
   }
@@ -52,7 +52,7 @@ export class Reports {
 
     expenses.forEach((expense) => {
       if (!categoryTotals[expense.category]) {
-        categoryTotals[expense.category] = 0;
+        categoryTotals[expense.category] = 0 //
       }
       categoryTotals[expense.category] += expense.amount;
     });
