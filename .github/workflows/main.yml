@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4.2.0
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@v4.0.4
+        uses: actions/setup-node@v6.2.0
 
       - name: Install Prettier dependencies
         run: npm install --save-dev --save-exact prettier
