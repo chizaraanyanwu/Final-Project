@@ -1,11 +1,11 @@
-const STORAGE_KEY='expenses'; //
+const STORAGE_KEY = 'expenses'; //
 
 /**
  * retrieves the list of expenses from local storage.
  */
 export function getExpenses() {
-  const expenses=localStorage.getItem(STORAGE_KEY); //
-  return expenses?JSON.parse(expenses) : []; //
+  const expenses = localStorage.getItem(STORAGE_KEY); //
+  return expenses ? JSON.parse(expenses) : []; //
 }
 
 /**
@@ -19,7 +19,7 @@ export function saveExpenses(expenses) {
  * adds a new expense to the list and saves it.
  */
 export function addExpense(expense) {
-  const expenses=getExpenses(); //
+  const expenses = getExpenses(); //
   expenses.push(expense);
   saveExpenses(expenses);
 }

@@ -8,6 +8,7 @@
     "watch": "rollup -c -w",
     "serve": "serve dist",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix", 
     "format": "prettier --write ."
   },
 
