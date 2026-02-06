@@ -1,19 +1,46 @@
-// Assuming other parts of src/reports.js remain unchanged
+// src/reports.js
 
-class Report {
-  constructor() {
-    this.init();
+import React from 'react';
+
+class Reports extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      reports: [],
+      loading: true,
+    };
   }
 
-  init() {
-    // initialization code
+  componentDidMount() {
+    this.fetchReports();
   }
 
-  updateChart() {
-    // code to update chart
+  async fetchReports() {
+    try {
+      const response = await fetch('/api/reports');
+      const data = await response.json();
+      this.setState({ reports: data, loading: false });
+    } catch (error) {
+      console.error('Error fetching reports:', error);
+      this.setState({ loading: false });
+    }
   }
 
   render() {
-    this.updateChart();
+    const { reports, loading } = this.state;
+    if (loading) return <div>Loading...</div>;
+
+    return (
+      <div>
+        <h1>Reports</h1>
+        <ul>
+          {reports.map(report => (
+            <li key={report.id}>{report.title}</li>
+          ))}
+        </ul>
+      </div>
+    );
   }
 }
+
+export default Reports;
