@@ -1,10 +1,12 @@
-// src/reports.js
+import { getExpenses } from './storage.js';
+import $ from 'jquery';
+import { Chart, PieController, ArcElement, Tooltip, Legend } from 'chart.js';
+Chart.register(PieController, ArcElement, Tooltip, Legend);
 
-<<<<<<< HEAD
 export class Reports {
   constructor() {
     this.chart = null;
-    this.init(); //
+    this.init();
   }
 
   init() {
@@ -36,61 +38,45 @@ export class Reports {
         }]
       },
       options: {}
-    }); //
+    });
 
     this.updateChart();
-=======
-import React from 'react';
-
-class Reports extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      reports: [],
-      loading: true,
-    };
   }
 
-  componentDidMount() {
-    this.fetchReports();
->>>>>>> 60d899e1dd730628a69ac13d2458a29605dbfbaa
-  }
+  /**
+     * Updates the chart data based on current expenses.
+     */
+  updateChart() {
+    const expenses = getExpenses();
+    const categoryTotals = {};
 
-  async fetchReports() {
-    try {
-      const response = await fetch('/api/reports');
-      const data = await response.json();
-      this.setState({ reports: data, loading: false });
-    } catch (error) {
-      console.error('Error fetching reports:', error);
-      this.setState({ loading: false });
-    }
-  }
-
-<<<<<<< HEAD
     expenses.forEach((expense) => {
       if (!categoryTotals[expense.category]) {
-        categoryTotals[expense.category] = 0; //
+        categoryTotals[expense.category] = 0;
       }
       categoryTotals[expense.category] += expense.amount;
     });
-=======
-  render() {
-    const { reports, loading } = this.state;
-    if (loading) return <div>Loading...</div>;
->>>>>>> 60d899e1dd730628a69ac13d2458a29605dbfbaa
 
-    return (
-      <div>
-        <h1>Reports</h1>
-        <ul>
-          {reports.map(report => (
-            <li key={report.id}>{report.title}</li>
-          ))}
-        </ul>
-      </div>
-    );
+    this.chart.data.labels = Object.keys(categoryTotals);
+    this.chart.data.datasets[0].data = Object.values(categoryTotals);
+    this.chart.update();
   }
 }
 
-export default Reports;
+let reportsInstance = null;
+
+/**
+ * Initializes the Reports instance.
+ */
+export function initReports() {
+  reportsInstance = new Reports();
+}
+
+/**
+ * Updates the chart using the existing Reports instance.
+ */
+export function updateChart() {
+  if (reportsInstance) {
+    reportsInstance.updateChart();
+  }
+}
